@@ -34,7 +34,7 @@ theta = df["theta"].to_numpy()
 # Shift angle by 2*pi
 theta = theta + 2*np.pi
 
-# Keep ? to ? samples
+# Keep samples where there are two values
 current = current[874:14395]
 theta = theta[874:14395]
 
@@ -140,8 +140,26 @@ rmse_theta = np.sqrt(
     np.mean((theta - theta_hat)**2)
 )
 
+rmse_theta_ma = np.sqrt(
+    np.mean((theta_ma - theta_hat)**2)
+)
+
+rmse_theta_dot_ma = np.sqrt(
+    np.mean((theta_dot_ma - theta_dot_hat)**2)
+)
+
+rmse_theta_dot = np.sqrt(
+    np.mean((theta_dot - theta_dot_hat)**2)
+)
+
 print()
 print(f"Theta RMSE = {rmse_theta:.6e}")
+
+print(f"Theta_ma RMSE = {rmse_theta_ma:.6e}")
+
+print(f"Theta_dot_ma RMSE = {rmse_theta_dot_ma:.6e}")
+
+print(f"Theta_dot RMSE = {rmse_theta_dot:.6e}")
 
 # --------------------------------------------------
 # Plot angle
